@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
         @current_user = user
         session[:user_id] = user.id
         session[:user_info] = auth
-        redirect_to root_url, :notice => "Signed in!"
+        redirect_to request.env["omniauth.origin"] || root_url, :notice => "Signed in!"
     end
 
     def destroy
