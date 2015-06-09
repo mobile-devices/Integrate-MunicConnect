@@ -16,6 +16,15 @@
 </head>
 <body>
 
+<div id="user_nav">
+    <% if session[:user_id].nil? %>
+        <%= link_to "Sign in with Munic", "/auth/munic" %>
+    <% else %>
+        Logged as  <%= current_user.email %>. <%= link_to "Sign Out", signout_path %>
+    <% end %>
+</div>
+
+
 <div class="container-fluid">
 
 <%= yield %>
