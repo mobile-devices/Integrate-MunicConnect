@@ -11,4 +11,15 @@ class User < ActiveRecord::Base
             #user.language = auth["info"].language
         end
     end
+
+    def update_info(info)
+        if self.updated_at < info.updated_at
+            self.update_attribute(:email, info.email)
+            #self.update_attribute(:full_name, info.full_name)
+            #self.update_attribute(:company_name, info.company_name)
+            #self.update_attribute(:time_zone, info.time_zone)
+            #self.update_attribute(:vat, info.vat)
+            #self.update_attribute(:language, info.language)
+        end
+    end
 end

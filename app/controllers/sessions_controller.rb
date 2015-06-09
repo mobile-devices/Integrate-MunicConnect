@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
     def create
         auth = request.env["omniauth.auth"]
         user = User.find_by_provider_and_uid(auth[:provider], auth[:uid]) || User.create_with_omniauth(auth)
+        user.update_info(auth[:extra][:raw_info])
         @current_user = user
         session[:user_id] = user.id
         session[:user_info] = auth
